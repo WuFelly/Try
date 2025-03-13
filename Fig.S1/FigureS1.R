@@ -20,26 +20,7 @@ library(rules)            # v1.0.2
 # Load data "ML_PDP_SHAP.RDATA"
 load("ML_PDP_SHAP.RDATA")
 
-# Model performance plots=======================================================
-## Random forest
 
-rf_plot <- rf_pred %>%
-  cbind(observed = rd_test$log_mean_mehg) %>%
-  ggplot(aes(x=observed, y=.pred))+
-  geom_point(shape = 21, size = 3, stroke = 0.5, fill = "#7fccba", color = 'black') +
-  geom_abline(slope = 1, intercept = 0, linetype = "dashed", color = "#F46D75", linewidth = 0.5) +
-  coord_obs_pred()+
-  labs(x='Observed MeHg content (log-scaled)', y= 'Predicted MeHg content (log-scaled)', title = '') +
-  theme(plot.title = element_text(hjust = 0.5, size = 18),
-        axis.title = element_text(size = 16),
-        axis.line = element_line(color = "black", linewidth = 0.5),
-        axis.text = element_text(hjust = 0.5, size = 14),
-        panel.grid.major  = element_blank(),
-        panel.background = element_blank())
-
-rf_plot
-
-## Cubist
 
 cubist_plot <- cubist_pred %>%
   cbind(observed = rd_test$log_mean_mehg) %>%
